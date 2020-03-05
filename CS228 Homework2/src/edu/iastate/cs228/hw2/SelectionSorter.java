@@ -51,7 +51,7 @@ public class SelectionSorter extends AbstractSorter {
 			for (int j = i + 1; j < n; j++) {
 
 				compare = pointComparator.compare(points[min_idx], points[j]);
-				if (compare == 1) {
+				if (compare == -1) {
 					min_idx = j;
 				}
 			}

@@ -39,7 +39,7 @@ public class Point implements Comparable<Point>
 	{
 		return y;
 	}
-	
+		
 	/** 
 	 * Set the value of the static instance variable xORy. 
 	 * @param xORy

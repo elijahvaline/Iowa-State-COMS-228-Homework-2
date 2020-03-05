@@ -10,15 +10,8 @@ public class Tester {
 		Point[] x = new Point[5];
 		Random r = new Random();
 		x = CompareSorters.generateRandomPoints(x.length, r);
-		System.out.println("\n");
-		SelectionSorter s = new SelectionSorter(x);
-		s.setComparator(0);
-
-		
-		
-		for (int i = 0; i < 5; i++) {
-			System.out.println(s.points[i].toString());	
-		}
+		RotationalPointScanner rot = new RotationalPointScanner(x, Algorithm.SelectionSort);
+		rot.scan();
 		
 		
 		

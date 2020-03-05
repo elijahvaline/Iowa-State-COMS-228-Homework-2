@@ -28,6 +28,8 @@ public abstract class AbstractSorter {
 	protected Comparator<Point> pointComparator = null;
 
 	private Point referencePoint = null; // common reference point for computing the polar angle
+	private int x;
+	private int y;
 
 	// Add other protected or private instance variables you may need.
 
@@ -81,12 +83,19 @@ public abstract class AbstractSorter {
 		switch (order) {
 		case 0:
 			pointComparator = new PositionComparator();
-			sort();
+			sort();	
+			x = getMedian().getX();
 			
 			break;
 		case 1:
+			pointComparator = new YPositionComparator();
+			sort();
+			y = getMedian().getY();
+			referencePoint = new Point(x,y);
 			break;
 		case 2:
+			pointComparator = new PolarAngleComparator(referencePoint);
+			sort();
 			break;
 
 		}
