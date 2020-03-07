@@ -31,6 +31,7 @@ public class RotationalPointScanner {
 	protected String outputFileName; // "select.txt", "insert.txt", "merge.txt", or "quick.txt"
 
 	protected long scanTime; // execution time in nanoseconds.
+	protected long time;
 
 	private Scanner sc;
 	private Scanner scan;
@@ -107,6 +108,7 @@ public class RotationalPointScanner {
 
 		switch (sortingAlgorithm) {
 		case QuickSort:
+			time = System.nanoTime();
 			aSorter = new QuickSorter(points);
 			aSorter.setComparator(0);
 			x = aSorter.getMedian().getX();
@@ -116,11 +118,25 @@ public class RotationalPointScanner {
 			System.out.println("\n");
 			medianCoordinatePoint = new Point(x, y);
 			aSorter.setComparator(2);
+			scanTime = System.nanoTime() - time;
 			draw();
 			break;
 		case MergeSort:
+			time = System.nanoTime();
+			aSorter = new MergeSorter(points);
+			aSorter.setComparator(0);
+			x = aSorter.getMedian().getX();
+			System.out.println("\n");
+			aSorter.setComparator(1);
+			y = aSorter.getMedian().getY();
+			System.out.println("\n");
+			medianCoordinatePoint = new Point(x, y);
+			aSorter.setComparator(2);
+			scanTime = System.nanoTime() - time;
+			draw();
 			break;
 		case SelectionSort:
+			time = System.nanoTime();
 			aSorter = new SelectionSorter(points);
 			aSorter.setComparator(0);
 			x = aSorter.getMedian().getX();
@@ -130,10 +146,12 @@ public class RotationalPointScanner {
 			System.out.println("\n");
 			medianCoordinatePoint = new Point(x, y);
 			aSorter.setComparator(2);
+			scanTime = System.nanoTime() - time;
 			draw();
 
 			break;
 		case InsertionSort:
+			time = System.nanoTime();
 			aSorter = new InsertionSorter(points);
 			aSorter.setComparator(0);
 			x = aSorter.getMedian().getX();
@@ -143,6 +161,7 @@ public class RotationalPointScanner {
 			System.out.println("\n");
 			medianCoordinatePoint = new Point(x, y);
 			aSorter.setComparator(2);
+			scanTime = System.nanoTime() - time;
 			draw();
 			break;
 
@@ -175,7 +194,23 @@ public class RotationalPointScanner {
 	 * Use the spacing in the sample run in Section 2 of the project description.
 	 */
 	public String stats() {
-		return null;
+		String algo = "";
+		switch (sortingAlgorithm) {
+		case InsertionSort:
+			algo = "Insertion Sort";
+			break;
+		
+		case MergeSort:
+			algo = "Merge Mort";
+			break;
+		case QuickSort:
+			algo = "Quick Sort";
+			break;
+		case SelectionSort:
+			algo = "Selection Sort";
+			break;
+		}
+		return  algo + " " + points.length + " " + scanTime;
 		// TODO
 	}
 

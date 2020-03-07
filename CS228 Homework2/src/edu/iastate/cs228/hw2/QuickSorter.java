@@ -83,19 +83,14 @@ public class QuickSorter extends AbstractSorter
         int i = (first-1); // index of smaller element 
         for (int j=first; j<last; j++) 
         { 
-            // If current element is smaller than the pivot 
             if (pointComparator.compare(points[j], pivot)== 1) 
             { 
                 i++; 
                 swap(i,j);
             } 
         } 
-  
-        // swap arr[i+1] and arr[high] (or pivot) 
         swap(i+1, last);
-
         return i+1; 
-
 	}	
 		
 

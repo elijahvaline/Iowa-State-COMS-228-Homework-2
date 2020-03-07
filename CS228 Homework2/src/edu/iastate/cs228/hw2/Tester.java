@@ -7,12 +7,13 @@ public class Tester {
 
 	public static void main(String[] args) {
 
-			Point[] x = new Point[500];
+			Point[] x = new Point[1000];
 			Random r = new Random();
 			x = CompareSorters.generateRandomPoints(x.length, r);
 			System.out.println("\n");
-			RotationalPointScanner rot = new RotationalPointScanner(x, Algorithm.QuickSort);
+			RotationalPointScanner rot = new RotationalPointScanner(x, Algorithm.MergeSort);
 			rot.scan();
+			System.out.println(rot.stats());
 
 	}
 
