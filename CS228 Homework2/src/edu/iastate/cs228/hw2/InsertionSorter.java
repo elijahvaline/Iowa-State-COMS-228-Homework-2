@@ -1,10 +1,9 @@
 package edu.iastate.cs228.hw2;
 
 import java.io.FileNotFoundException;
-import java.lang.NumberFormatException; 
-import java.lang.IllegalArgumentException; 
+import java.lang.NumberFormatException;
+import java.lang.IllegalArgumentException;
 import java.util.InputMismatchException;
-
 
 /**
  *  
@@ -14,32 +13,42 @@ import java.util.InputMismatchException;
 
 /**
  * 
- * This class implements insertion sort.   
+ * This class implements insertion sort.
  *
  */
 
-public class InsertionSorter extends AbstractSorter 
-{
-	// Other private instance variables if you need ... 
-	
-	/**
-	 * Constructor takes an array of points.  It invokes the superclass constructor, and also 
-	 * set the instance variables algorithm in the superclass.
-	 * 
-	 * @param pts  
-	 */
-	public InsertionSorter(Point[] pts) 
-	{
-		// TODO 
-	}	
+public class InsertionSorter extends AbstractSorter {
+	// Other private instance variables if you need ...
 
-	
-	/** 
-	 * Perform insertion sort on the array points[] of the parent class AbstractSorter.  
+	/**
+	 * Constructor takes an array of points. It invokes the superclass constructor,
+	 * and also set the instance variables algorithm in the superclass.
+	 * 
+	 * @param pts
 	 */
-	@Override 
-	public void sort()
-	{
-		// TODO 
-	}		
+	public InsertionSorter(Point[] pts) {
+		super(pts);
+		super.algorithm = "Insertion Sort";
+
+	}
+
+	/**
+	 * Perform insertion sort on the array points[] of the parent class
+	 * AbstractSorter.
+	 */
+	@Override
+	public void sort() {
+		int n = points.length;
+		for (int i = 1; i < n; ++i) {
+			Point key = points[i];
+			int j = i - 1;
+
+			while (j >= 0 && pointComparator.compare(key, points[j]) == 1) {
+				points[j + 1] = points[j];
+				swap(j + 1, j);
+				j = j - 1;
+			}
+			points[j + 1] = key;
+		}
+	}
 }

@@ -44,6 +44,8 @@ public class SelectionSorter extends AbstractSorter {
 		int n = points.length;
 
 		// One by one move boundary of unsorted subarray
+		//returns 1 if p1 is smaller; returns -1 if p1 is bigger polar angle than p2
+		
 		for (int i = 0; i < n - 1; i++) {
 			// Find the minimum element in unsorted array
 			int min_idx = i;
@@ -58,6 +60,7 @@ public class SelectionSorter extends AbstractSorter {
 			Point temp = points[min_idx];
 			points[min_idx] = points[i];
 			points[i] = temp;
+			
 
 		}
 

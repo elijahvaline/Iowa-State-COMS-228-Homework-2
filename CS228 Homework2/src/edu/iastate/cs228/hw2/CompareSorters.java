@@ -86,7 +86,7 @@ public class CompareSorters
 			x = rand.nextInt(101) - 50;
 			y = rand.nextInt(101) - 50;	
 			returner[i] = new Point(x,y);	
-			System.out.println(returner[i].toString());
+		
 		}
 		return returner; 
 	}

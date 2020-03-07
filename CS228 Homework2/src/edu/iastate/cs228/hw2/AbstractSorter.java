@@ -57,7 +57,7 @@ public abstract class AbstractSorter {
 	 * @throws IllegalArgumentException if p == null
 	 */
 	public void setReferencePoint(Point p) throws IllegalArgumentException {
-		// TODO
+		referencePoint = p;
 	}
 
 	/**
@@ -91,10 +91,10 @@ public abstract class AbstractSorter {
 			pointComparator = new YPositionComparator();
 			sort();
 			y = getMedian().getY();
-			referencePoint = new Point(x,y);
+			setReferencePoint(new Point(x,y));
 			break;
 		case 2:
-			pointComparator = new PolarAngleComparator(referencePoint);
+			pointComparator = new PolarAngleComparator(referencePoint);	
 			sort();
 			break;
 
@@ -123,7 +123,10 @@ public abstract class AbstractSorter {
 	 * @param pts
 	 */
 	public void getPoints(Point[] pts) {
-		// TODO
+		pts = new Point[points.length];
+		for (int i = 0; i< points.length; i++) {
+			pts[i] = points[i];			
+		}
 	}
 
 	/**

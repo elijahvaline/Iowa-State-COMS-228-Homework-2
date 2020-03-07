@@ -35,8 +35,8 @@ public class RotationalPointScanner {
 	private Scanner sc;
 	private Scanner scan;
 
-	int x;
-	int y;
+	private int x;
+	private int y;
 
 	/**
 	 * This constructor accepts an array of points and one of the four sorting
@@ -115,14 +115,26 @@ public class RotationalPointScanner {
 			aSorter = new SelectionSorter(points);
 			aSorter.setComparator(0);
 			x = aSorter.getMedian().getX();
+			System.out.println("\n");
 			aSorter.setComparator(1);
 			y = aSorter.getMedian().getY();
+			System.out.println("\n");
 			medianCoordinatePoint = new Point(x, y);
 			aSorter.setComparator(2);
 			draw();
 
 			break;
 		case InsertionSort:
+			aSorter = new InsertionSorter(points);
+			aSorter.setComparator(0);
+			x = aSorter.getMedian().getX();
+			System.out.println("\n");
+			aSorter.setComparator(1);
+			y = aSorter.getMedian().getY();
+			System.out.println("\n");
+			medianCoordinatePoint = new Point(x, y);
+			aSorter.setComparator(2);
+			draw();
 			break;
 
 		}
