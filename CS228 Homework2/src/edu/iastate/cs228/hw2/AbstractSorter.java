@@ -139,6 +139,6 @@ public abstract class AbstractSorter {
 		Point z;
 		z = points[i];
 		points[i] = points[j];
-		points[j] = points[i];
+		points[j] = z;
 	}
 }

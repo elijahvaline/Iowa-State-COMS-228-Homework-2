@@ -11,7 +11,7 @@ public class Tester {
 			Random r = new Random();
 			x = CompareSorters.generateRandomPoints(x.length, r);
 			System.out.println("\n");
-			RotationalPointScanner rot = new RotationalPointScanner(x, Algorithm.InsertionSort);
+			RotationalPointScanner rot = new RotationalPointScanner(x, Algorithm.QuickSort);
 			rot.scan();
 
 	}

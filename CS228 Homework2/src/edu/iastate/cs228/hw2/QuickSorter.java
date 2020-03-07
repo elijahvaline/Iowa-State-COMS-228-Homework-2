@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.lang.NumberFormatException; 
 import java.lang.IllegalArgumentException; 
 import java.util.InputMismatchException;
+import java.util.Random;
 
 
 /**
@@ -31,7 +32,8 @@ public class QuickSorter extends AbstractSorter
 	 */
 	public QuickSorter(Point[] pts)
 	{
-		// TODO 
+	super(pts);
+	super.algorithm = "Quick Sorter";
 	}
 		
 
@@ -42,7 +44,9 @@ public class QuickSorter extends AbstractSorter
 	@Override 
 	public void sort()
 	{
-		// TODO 
+	
+		quickSortRec(0, points.length-1);
+	
 	}
 	
 	
@@ -54,7 +58,15 @@ public class QuickSorter extends AbstractSorter
 	 */
 	private void quickSortRec(int first, int last)
 	{
-		// TODO
+	       if (first < last) 
+	        { 
+	            /* pi is partitioning index, arr[pi] is  
+	              now at right place */
+	            int partitionPoint = partition(first, last); 
+
+	            quickSortRec(first, partitionPoint-1); 
+	            quickSortRec(partitionPoint+1, last); 
+	        }
 	}
 	
 	
@@ -67,8 +79,23 @@ public class QuickSorter extends AbstractSorter
 	 */
 	private int partition(int first, int last)
 	{
-		// TODO 
-		return 0; 
+		Point pivot = points[last];  
+        int i = (first-1); // index of smaller element 
+        for (int j=first; j<last; j++) 
+        { 
+            // If current element is smaller than the pivot 
+            if (pointComparator.compare(points[j], pivot)== 1) 
+            { 
+                i++; 
+                swap(i,j);
+            } 
+        } 
+  
+        // swap arr[i+1] and arr[high] (or pivot) 
+        swap(i+1, last);
+
+        return i+1; 
+
 	}	
 		
 

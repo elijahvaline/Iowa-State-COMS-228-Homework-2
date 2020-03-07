@@ -107,7 +107,16 @@ public class RotationalPointScanner {
 
 		switch (sortingAlgorithm) {
 		case QuickSort:
-
+			aSorter = new QuickSorter(points);
+			aSorter.setComparator(0);
+			x = aSorter.getMedian().getX();
+			System.out.println("\n");
+			aSorter.setComparator(1);
+			y = aSorter.getMedian().getY();
+			System.out.println("\n");
+			medianCoordinatePoint = new Point(x, y);
+			aSorter.setComparator(2);
+			draw();
 			break;
 		case MergeSort:
 			break;
