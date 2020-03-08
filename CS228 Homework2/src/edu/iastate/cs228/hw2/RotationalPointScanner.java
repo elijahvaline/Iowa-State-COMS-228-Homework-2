@@ -1,5 +1,7 @@
 package edu.iastate.cs228.hw2;
 
+import java.io.File;
+
 /**
  * 
  * @author 
@@ -7,6 +9,7 @@ package edu.iastate.cs228.hw2;
  */
 
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -50,6 +53,23 @@ public class RotationalPointScanner {
 	public RotationalPointScanner(Point[] pts, Algorithm algo) throws IllegalArgumentException {
 		points = pts;
 		sortingAlgorithm = algo;
+		
+		switch(sortingAlgorithm) {
+		case SelectionSort:
+			outputFileName = "select.txt";
+			break;
+		case InsertionSort:
+			outputFileName = "insertion.txt";
+			break;
+		case QuickSort:
+			outputFileName = "quick.txt";
+			break;
+		case MergeSort:
+			outputFileName = "merge.txt";
+			break;
+		}
+		
+		
 	}
 
 	/**
@@ -65,8 +85,9 @@ public class RotationalPointScanner {
 		int x;
 		int y;
 		int length = 0;
-		sc = new Scanner(inputFileName);
-		scan = new Scanner(inputFileName);
+		File f = new File(inputFileName);
+		sc = new Scanner(f);
+		scan = new Scanner(f);
 		while (sc.hasNextInt()) {
 			sc.nextInt();
 			sc.nextInt();
@@ -79,8 +100,24 @@ public class RotationalPointScanner {
 			x = scan.nextInt();
 			y = scan.nextInt();
 			points[i] = new Point(x, y);
+			
 		}
 		sortingAlgorithm = algo;
+		
+		switch(sortingAlgorithm) {
+		case SelectionSort:
+			outputFileName = "select.txt";
+			break;
+		case InsertionSort:
+			outputFileName = "insertion.txt";
+			break;
+		case QuickSort:
+			outputFileName = "quick.txt";
+			break;
+		case MergeSort:
+			outputFileName = "merge.txt";
+			break;
+		}
 
 	}
 
@@ -112,10 +149,8 @@ public class RotationalPointScanner {
 			aSorter = new QuickSorter(points);
 			aSorter.setComparator(0);
 			x = aSorter.getMedian().getX();
-			System.out.println("\n");
 			aSorter.setComparator(1);
 			y = aSorter.getMedian().getY();
-			System.out.println("\n");
 			medianCoordinatePoint = new Point(x, y);
 			aSorter.setComparator(2);
 			scanTime = System.nanoTime() - time;
@@ -126,10 +161,8 @@ public class RotationalPointScanner {
 			aSorter = new MergeSorter(points);
 			aSorter.setComparator(0);
 			x = aSorter.getMedian().getX();
-			System.out.println("\n");
 			aSorter.setComparator(1);
 			y = aSorter.getMedian().getY();
-			System.out.println("\n");
 			medianCoordinatePoint = new Point(x, y);
 			aSorter.setComparator(2);
 			scanTime = System.nanoTime() - time;
@@ -140,25 +173,20 @@ public class RotationalPointScanner {
 			aSorter = new SelectionSorter(points);
 			aSorter.setComparator(0);
 			x = aSorter.getMedian().getX();
-			System.out.println("\n");
 			aSorter.setComparator(1);
 			y = aSorter.getMedian().getY();
-			System.out.println("\n");
 			medianCoordinatePoint = new Point(x, y);
 			aSorter.setComparator(2);
 			scanTime = System.nanoTime() - time;
 			draw();
-
 			break;
 		case InsertionSort:
 			time = System.nanoTime();
 			aSorter = new InsertionSorter(points);
 			aSorter.setComparator(0);
 			x = aSorter.getMedian().getX();
-			System.out.println("\n");
 			aSorter.setComparator(1);
 			y = aSorter.getMedian().getY();
-			System.out.println("\n");
 			medianCoordinatePoint = new Point(x, y);
 			aSorter.setComparator(2);
 			scanTime = System.nanoTime() - time;
@@ -197,17 +225,17 @@ public class RotationalPointScanner {
 		String algo = "";
 		switch (sortingAlgorithm) {
 		case InsertionSort:
-			algo = "Insertion Sort";
+			algo = "InsertionSort";
 			break;
 		
 		case MergeSort:
-			algo = "Merge Mort";
+			algo = "MergeSort";
 			break;
 		case QuickSort:
-			algo = "Quick Sort";
+			algo = "QuickSort";
 			break;
 		case SelectionSort:
-			algo = "Selection Sort";
+			algo = "SelectionSort";
 			break;
 		}
 		return  algo + " " + points.length + " " + scanTime;
@@ -222,8 +250,12 @@ public class RotationalPointScanner {
 	 */
 	@Override
 	public String toString() {
-		return null;
-		// TODO
+		String returner = "";
+		for (int i = 0; i< points.length; i++) {
+			returner += points[i].toString() + " ";
+		}
+		return returner;
+		
 	}
 
 	/**
@@ -236,7 +268,10 @@ public class RotationalPointScanner {
 	 * @throws FileNotFoundException
 	 */
 	public void writePointsToFile() throws FileNotFoundException {
-		// TODO
+		File outFile = new File(outputFileName);
+		PrintWriter out = new PrintWriter(outFile);
+		out.print(this.toString());
+		out.close();
 	}
 
 	/**
@@ -273,10 +308,10 @@ public class RotationalPointScanner {
 
 		switch (sortingAlgorithm) {
 		case SelectionSort:
-			sort = "Selection Sort";
+			sort = "SelectionSort";
 			break;
 		case InsertionSort:
-			sort = "Insertion Sort";
+			sort = "InsertionSort";
 			break;
 		case MergeSort:
 			sort = "Mergesort";

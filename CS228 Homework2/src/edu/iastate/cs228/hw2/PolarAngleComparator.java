@@ -119,6 +119,7 @@ public class PolarAngleComparator implements Comparator<Point> {
 		// return 0
 		Point mP1 = new Point(p1.getX() - referencePoint.getX(), p1.getY() - referencePoint.getY());
 		Point mP2 = new Point(p2.getX() - referencePoint.getX(), p2.getY() - referencePoint.getY());
+		
 		if (p1.equals(p2)) {
 			return 0;
 

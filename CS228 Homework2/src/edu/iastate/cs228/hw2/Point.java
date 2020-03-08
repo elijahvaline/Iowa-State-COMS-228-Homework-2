@@ -44,9 +44,9 @@ public class Point implements Comparable<Point>
 	 * Set the value of the static instance variable xORy. 
 	 * @param xORy
 	 */
-	public static void setXorY(boolean xORy)
+	public static void setXorY(boolean mxORy)
 	{
-		// TODO 
+		xORy = mxORy; 
 	}
 	
 	
@@ -72,8 +72,17 @@ public class Point implements Comparable<Point>
 	 */
 	public int compareTo(Point q)
 	{
-		return 0; 
-		// TODO; 
+		if ((xORy == true) && (this.getX() < q.getX() || (this.getX() == q.getX() && (this.getY() < q.getY())))) {
+				return -1;
+		}
+		else if ((xORy == false) && (this.getY() < q.getY() || (this.getY() == q.getY() && this.getX() < q.getX()))) {
+			return -1;
+		}
+		else if (this.getX() == q.getX() && this.getY() == q.getY()) {
+			return 0;
+		}
+		
+		return 1; 
 	}
 	
 	
